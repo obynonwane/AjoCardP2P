@@ -14,7 +14,12 @@ class CreateDepositsTable extends Migration
     public function up()
     {
         Schema::create('deposits', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->increments('id');
+            $table->unsignedInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->double('amount_deposited',15, 2)->default(0);
+            $table->string('deposit_reference');
+            $table->string('status');
             $table->timestamps();
         });
     }
