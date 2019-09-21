@@ -12,11 +12,11 @@
 
 <h1> AjoCard P2P / Fund Transfer</h1>
 <h3>Project Description </h3>
-<p>This API Receive the transaction parameters from Authenticated User.</p>
-<p>Validate the transaction parameters, </p>
-<p>Move the funds, while keeping an audit log of the transactions.</p>
+<p>1. This API Receive the transaction parameters from Authenticated User.</p>
+<p>2. Validate the transaction parameters, </p>
+<p>3. Move the funds, while keeping an audit log of the transactions.</p>
 
-<h3> This Project was Built with VueJS as Front-End tool and Laravel PHP Framework for Backend API</h3>
+<h3> This Project was Built with Laravel PHP Framework for Backend API</h3>
 <p>
 <h3>POSTMAN API DOCuMENTATION</h3>
 <p> https://documenter.getpostman.com/view/3188911/SVmwwJP5</p>
