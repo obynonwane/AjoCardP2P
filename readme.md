@@ -1,4 +1,4 @@
-<!-- <p align="center"><img src="https://res.cloudinary.com/dtfbvvkyp/image/upload/v1566331377/laravel-logolockup-cmyk-red.svg" width="400"></p>
+<!-- <p align="center"><img src="https://photos.google.com/photo/AF1QipPWIhEDtkUKnKtx-QlHDZiu6Mj3ZpVPFiNNSQ2E" width="400"></p>
 
 <p align="center">
 <a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
@@ -6,6 +6,9 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
 </p> -->
+
+<p align="center"><img src="https://photos.google.com/photo/AF1QipPWIhEDtkUKnKtx-QlHDZiu6Mj3ZpVPFiNNSQ2E" width="400"></p>
+
 
 <h1> AjoCard P2P / Fund Transfer</h1>
 <h3>Project Description </h3>
