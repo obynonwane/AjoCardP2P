@@ -23,7 +23,9 @@ class TransactionController extends Controller
      */
     public function index()
     {
-        //
+        $transactions = Transaction::all();
+
+        return response()->json(['data'=>$transactions],200);
     }
 
     /**
@@ -88,9 +90,13 @@ class TransactionController extends Controller
      * @param  \App\Model\Transaction  $transaction
      * @return \Illuminate\Http\Response
      */
-    public function show(Transaction $transaction)
+    public function show($id)
     {
-        //
+        $transaction = Transaction::findOrFail($id);
+        
+        return response()->json(['data'=>$transaction], 200);       
+
+       
     }
 
     /**
