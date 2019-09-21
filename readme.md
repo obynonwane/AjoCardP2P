@@ -7,7 +7,7 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
 </p> -->
 
-<p align="center"><img src="https://www.dropbox.com/s/2617gdmmbp0rtus/GCK%20PICS.jpg?dl=0" width="400"></p>
+
 
 
 <h1> AjoCard P2P / Fund Transfer</h1>
@@ -17,6 +17,9 @@
 <p>Move the funds, while keeping an audit log of the transactions.</p>
 
 <h3> This Project was Built with VueJS as Front-End tool and Laravel PHP Framework for Backend API</h3>
+<p>
+<h3>POSTMAN API DOCuMENTATION</h3>
+<p>https://documenter.getpostman.com/view/3188911/SVmwwJP5</p>
 
 <h1>Installation</h1>
 

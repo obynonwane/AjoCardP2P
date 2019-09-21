@@ -137,7 +137,7 @@ class UserController extends Controller
 
          //Add to Deposits Table
          $deposit = new Deposit;
-         $deposit->user_id = $user->id;
+         $deposit->user_id = Auth::user()->id;
          $deposit->amount_deposited = $request->wallet_balance;
          $deposit->deposit_reference = str_random(45);
          $deposit->status = 'success';
