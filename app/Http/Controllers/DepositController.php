@@ -1,12 +1,19 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Auth;
+use App\User;
 use App\Model\Deposit;
+use App\Model\Transaction;
 use Illuminate\Http\Request;
 
 class DepositController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth:api')->except('index', 'show');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -35,7 +42,30 @@ class DepositController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $rules = [
+            'amount'=>'required|numeric',            
+        ];
+
+        $this->validate($request, $rules);
+
+        $data = $request->all();
+        $data['user_id'] = Auth::user()->id;
+        $data['amount_deposited'] = $request->amount;
+        $data['deposit_reference'] = str_random(45);
+        $data['status'] = 'success';
+        $deposit = Deposit::create($data);
+
+
+        
+        //update the Receiver wallet_balance
+        $receiver_update = User::findOrFail(Auth::user()->id);
+        $receiver_update->wallet_balance = abs($receiver_update->wallet_balance + $request->amount);
+        $receiver_update->save();
+
+
+        return response()->json(['data'=>$deposit], 200);
+
+
     }
 
     /**

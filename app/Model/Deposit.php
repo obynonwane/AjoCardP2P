@@ -8,6 +8,7 @@ use App\User;
 class Deposit extends Model
 {
     //
+    protected $fillable = ['amount_deposited','user_id','deposit_reference','status'];
 
     public function users()
     {

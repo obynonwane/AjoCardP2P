@@ -59,7 +59,6 @@ class UserController extends Controller
         $data['wallet_id'] = str_random(12);
         $data['pin'] = $request->pin;        
         $data['password'] = bcrypt($request->password);     
-        
         $user = User::create($data);
 
         return response()->json(['data'=>$data], 201);
