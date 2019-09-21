@@ -4,9 +4,17 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use App\Model\Deposit;
+use App\Model\Transaction;
+use Auth;
 
 class UserController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth:api')->except('index', 'show');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -124,7 +132,17 @@ class UserController extends Controller
             return response()->json(['error'=>'You Need to specify a different value to Update', 'code' => 422], 422);
          }
 
+         
          $user->save();
+
+         //Add to Deposits Table
+         $deposit = new Deposit;
+         $deposit->user_id = $user->id;
+         $deposit->amount_deposited = $request->wallet_balance;
+         $deposit->deposit_reference = str_random(45);
+         $deposit->status = 'success';
+         $deposit->save();
+
 
          return response()->json(['data'=>$user], 200);
     }
