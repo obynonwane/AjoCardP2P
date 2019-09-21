@@ -33,3 +33,5 @@
 <li>Run <code>php artisan migrate</code></li>
 <li>Done !!! Enjoy Your Fund Transfer</li>
 </ul>
+
+<p>Your Client_id and client_secret can be gotten from  oauth_clients table in the database (mysql database was used)</p>
