@@ -18,7 +18,7 @@
 
 <h3> This Project was Built with Laravel PHP Framework for Backend API</h3>
 <p>
-<h3>POSTMAN API DOCuMENTATION</h3>
+<h3>POSTMAN API DOCUMENTATION</h3>
 <p> https://documenter.getpostman.com/view/3188911/SVmwwJP5</p>
 
 <h1>Installation</h1>
