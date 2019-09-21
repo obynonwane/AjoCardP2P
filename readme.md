@@ -7,9 +7,11 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
 </p> -->
 
-h1> AjoCard P2P / Fund Transfer</h1>
+<h1> AjoCard P2P / Fund Transfer</h1>
 <h3>Project Description </h3>
-<p>This API Receive the transaction parameters from Authenticated User.Validate the transaction parameters, Move the funds, while keeping an audit log of the transactions.
+<p>This API Receive the transaction parameters from Authenticated User.</p>
+<p>Validate the transaction parameters, </p>
+<p>Move the funds, while keeping an audit log of the transactions.</p>
 
 <h3> This Project was Built with VueJS as Front-End tool and Laravel PHP Framework for Backend API</h3>
 
