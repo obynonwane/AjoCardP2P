@@ -34,4 +34,4 @@
 <li>Done !!! Enjoy Your Fund Transfer</li>
 </ul>
 
-<p>Your Client_id and client_secret can be gotten from  oauth_clients table in the database (mysql database was used)</p>
+<p>Your <code>client_id</code> and <code>client_secret</code> can be gotten from  <code>oauth_clients</code> table in the database (mysql database was used)</p>
