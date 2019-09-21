@@ -7,7 +7,7 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
 </p> -->
 
-<p align="center"><img src="https://photos.google.com/photo/AF1QipPWIhEDtkUKnKtx-QlHDZiu6Mj3ZpVPFiNNSQ2E" width="400"></p>
+<p align="center"><img src="https://www.dropbox.com/s/2617gdmmbp0rtus/GCK%20PICS.jpg?dl=0" width="400"></p>
 
 
 <h1> AjoCard P2P / Fund Transfer</h1>
