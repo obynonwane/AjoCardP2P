@@ -50,7 +50,7 @@ class Handler extends ExceptionHandler
         // Handles ModelNotFoundException
        if($request->expectsJson()){
         if($exception instanceof ModelNotFoundException){
-            return response()->json(['data'=>'Record does not Exist'], 404);
+            return response()->json(['errors'=>'Record does not Exist'], 404);
         }
        }
         return parent::render($request, $exception);
