@@ -47,58 +47,58 @@ class TransactionController extends Controller
      */
     public function store(TransactionRequest $request)
     {
-        $fn_create = function() use ($request){
+       
+        $transaction = DB::transaction(function () use($request) {
 
-                $wallet_id = $request->wallet_id;
-                $receiver = User::where('wallet_id', $wallet_id)->first();
+            $wallet_id = $request->wallet_id;
+            $receiver = User::where('wallet_id', $wallet_id)->first();
 
-                if(Auth::user()->pin != $request->pin){
-                    return response()->json(['error'=>'Incorrect 4 digit Pin supplied', 'code' => 422], 422);
-                }
-
-                if(!$receiver){
-                    return response()->json(['error'=>'Incorrect Receiever Wallet ID Supplied', 'code' => 422], 422);
-                }
-
-                if(Auth::user()->wallet_balance < $request->amount){
-                    return response()->json(['error'=>'Insufficient Fund, Please Fund your Account', 'code' => 422], 422);
-                }
-
-                if($request->amount == 0){
-                    return response()->json(['error'=>'You can not sent Zero (0) Amount', 'code' => 422], 422);
-                }
-        
-          try{
-                //Submit Transaction 
-                $transaction = new Transaction;
-                $transaction->sender_id = Auth::user()->id;
-                $transaction->receiver_id = $receiver->id;
-                $transaction->transaction_reference = str_random(40);
-                $transaction->amount_sent = $request->amount;
-                $transaction->amount_received = $request->amount;
-                $transaction->save();
-
-
-                //update the Receiver wallet_balance
-                $receiver_update = User::findOrFail($receiver->id);
-                $receiver_update->wallet_balance = abs($receiver_update->wallet_balance + $request->amount);
-                $receiver_update->save();
-
-                //update the Sender wallet_balance
-                $sender_update = User::findOrFail(Auth::user()->id);
-                $sender_update->wallet_balance = abs($sender_update->wallet_balance - $request->amount);
-                $sender_update->save();
-                
-                return response()->json(['data'=>$transaction], 201);
-          }
-            catch(Exception $e){
-                    return response()->json(['error'=>'Unable to Finalize Transaction', 'code' => 422], 422);
+            if(Auth::user()->pin != $request->pin){
+                return response()->json(['error'=>'Incorrect 4 digit Pin supplied', 'code' => 422], 422);
             }
-        
-        };
 
-        $return = DB::transaction($fn_create);
-        return $return;
+            if(!$receiver){
+                return response()->json(['error'=>'Incorrect Receiever Wallet ID Supplied', 'code' => 422], 422);
+            }
+
+            if(Auth::user()->wallet_balance < $request->amount){
+                return response()->json(['error'=>'Insufficient Fund, Please Fund your Account', 'code' => 422], 422);
+            }
+
+            if($request->amount == 0){
+                return response()->json(['error'=>'You can not sent Zero (0) Amount', 'code' => 422], 422);
+            }
+
+            try{
+             //Submit Transaction 
+             $transaction = new Transaction;
+             $transaction->sender_id = Auth::user()->id;
+             $transaction->receiver_id = $receiver->id;
+             $transaction->transaction_reference = str_random(40);
+             $transaction->amount_sent = $request->amount;
+             $transaction->amount_received = $request->amount;
+             $transaction->save();
+
+
+             //update the Receiver wallet_balance
+             $receiver_update = User::findOrFail($receiver->id);
+             $receiver_update->wallet_balance = abs($receiver_update->wallet_balance + $request->amount);
+             $receiver_update->save();
+
+             //update the Sender wallet_balance
+             $sender_update = User::findOrFail(Auth::user()->id);
+             $sender_update->wallet_balance = abs($sender_update->wallet_balance - $request->amount);
+             $sender_update->save();
+
+            }
+            catch(Exception $e){
+                return response()->json(['error'=>'Transaction Failed', 'code' => 422], 422);
+            }
+      
+            
+        });
+
+        return response()->json(['response'=>$transaction], 201);
         
     }
 
