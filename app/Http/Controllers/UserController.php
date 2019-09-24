@@ -13,7 +13,7 @@ class UserController extends Controller
 
     public function __construct()
     {
-        $this->middleware('auth:api')->except('index', 'show');
+        $this->middleware('auth:api')->except('index', 'show','store');
     }
     /**
      * Display a listing of the resource.
@@ -48,9 +48,10 @@ class UserController extends Controller
             'name'=>'required',
             'email'=>'required|email|unique:users',
             'password'=>'required|min:6|confirmed',
-            'pin'=>'required|numeric|min:4',
+            'pin'=>'required|numeric|digits:4',
             
         ];
+        
         $this->validate($request, $rules);
 
         $data = $request->all();
@@ -104,8 +105,21 @@ class UserController extends Controller
         $rules = [
 
             'email'=>'required|email|unique:users,email' . $user->id,
-            'password'=>'required|min:6|confirmed',            
+            'password'=>'required|min:6|confirmed',    
+            'pin'=>'numeric|digits:4',
         ];
+
+        if($id != Auth::user()->id){
+            return response()->json(['error'=>'You dont have permission do do this, Login.', 'code' => 409], 409);
+        }
+
+        if(strlen($request->pin) < 4){
+            return response()->json(['error'=>'Your Pin Must not be less than 4 digits', 'code' => 409], 409);
+        }
+
+        if(strlen($request->pin) > 4){
+            return response()->json(['error'=>'Your Pin Must not more than 4 digits', 'code' => 409], 409);
+        }
 
         if($request->has('name')){
             $user->name = $request->name;
@@ -117,6 +131,10 @@ class UserController extends Controller
 
         if($request->has('password')){
             $user->password = bcrypt($request->password);
+        }
+
+        if($request->has('pin')){
+            $user->pin = $request->pin;
         }   
 
         if($request->has('wallet_id')){
