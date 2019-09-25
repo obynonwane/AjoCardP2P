@@ -126,7 +126,7 @@ class UserController extends Controller
         }
 
         if($request->has('email')){
-            $user->name = $request->email;
+            $user->email = $request->email;
         }
 
         if($request->has('password')){

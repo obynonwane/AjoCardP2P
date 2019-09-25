@@ -47,7 +47,7 @@ class TransactionController extends Controller
      */
     public function store(TransactionRequest $request)
     {
-       
+       //Transaction Facade
         $transaction = DB::transaction(function () use($request) {
 
             $wallet_id = $request->wallet_id;
@@ -95,10 +95,11 @@ class TransactionController extends Controller
                 return response()->json(['error'=>'Transaction Failed', 'code' => 422], 422);
             }
       
+            return response()->json(['data'=>$transaction], 201);
             
         });
-
-        return response()->json(['response'=>$transaction], 201);
+        //response
+        return response()->json(['response'=>$transaction, 'code' => 201], 201);
         
     }
 
